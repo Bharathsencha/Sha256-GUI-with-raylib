@@ -126,3 +126,7 @@ Build and run:
 make
 make run
 ```
+For my Code Clone the repo and run make in file directory containg these files and then 
+```bash
+./sha256_gui
+```
