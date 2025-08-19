@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "sha256.h"   // your implementation (sha256.c)
+#include "sha256.h" 
 
 // Use system OpenSSL CLI to compute SHA-256
 void run_openssl_sha256(const char *input, char *openssl_output) {
