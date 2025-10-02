@@ -1,29 +1,17 @@
-# Compiler
 CC = gcc
-CFLAGS = -Wall -O2
+CFLAGS = -Wall -std=c99
+LDFLAGS = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 
-# Targets
-TARGET_CLI = sha256_test
-TARGET_GUI = sha256_gui
+SRC = sha256.c raylib.c
+OUT = sha256_gui
 
-# Source files
-CLI_SRCS = main.c sha256.c
-CLI_OBJS = $(CLI_SRCS:.c=.o)
+all: $(OUT)
 
-GUI_SRCS = raylib.c sha256.c
-GUI_OBJS = $(GUI_SRCS:.c=.o)
+$(OUT): $(SRC)
+	$(CC) $(CFLAGS) $(SRC) -o $(OUT) $(LDFLAGS)
 
-# Default rule builds both
-all: $(TARGET_CLI) $(TARGET_GUI)
+run: $(OUT)
+	./$(OUT)
 
-# CLI build
-$(TARGET_CLI): $(CLI_OBJS)
-	$(CC) $(CFLAGS) -o $@ $^
-
-# GUI build (needs raylib + libm)
-$(TARGET_GUI): $(GUI_OBJS)
-	$(CC) $(CFLAGS) -o $@ $^ -lraylib -lm
-
-# Cleanup
 clean:
-	rm -f $(CLI_OBJS) $(GUI_OBJS) $(TARGET_CLI) $(TARGET_GUI)
+	rm -f $(OUT)
